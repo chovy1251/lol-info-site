@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -55,96 +55,6 @@ function draw(){
     drops[i] += SPEED * FONT_SIZE;
 
     // restart column
-    if (drops[i] > canvas.height && Math.random() > 0.98){
-      drops[i] = 0;
-    }
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-</script>
-</body>
-</html>
- -->
- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>Matrix Rain – very slow & dense</title>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    background: #000;
-    overflow: hidden;
-    position: relative;
-  }
-
-  canvas {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-
-  #center-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    max-width: 50%;
-    max-height: 50%;
-    pointer-events: none; /* 可选，防止遮挡点击事件 */
-  }
-</style>
-</head>
-<body>
-<canvas id="matrix"></canvas>
-<img id="center-image" src="xhy.jpg" alt="Centered Image" />
-
-<script>
-/* ---------- canvas ---------- */
-const canvas = document.getElementById('matrix');
-const ctx    = canvas.getContext('2d');
-
-function resize(){
-  canvas.width  = innerWidth;
-  canvas.height = innerHeight;
-}
-resize();
-addEventListener('resize', resize);
-
-/* ---------- config ---------- */
-const FONT_SIZE   = 10;
-const SPEED       = 1.00;
-const TRAIL_ALPHA = 0.04;
-const CHARS       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$%*+-/';
-const COLUMNS     = Math.floor(canvas.width / FONT_SIZE);
-const drops       = Array.from({length: COLUMNS},
-                    () => Math.random() * canvas.height);
-
-/* ---------- main loop ---------- */
-function draw(){
-  ctx.fillStyle = `rgba(0,0,0,${TRAIL_ALPHA})`;
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.font = `${FONT_SIZE}px monospace`;
-
-  for(let i=0;i<COLUMNS;i++){
-    const char = CHARS[Math.floor(Math.random()*CHARS.length)];
-    const x    = i * FONT_SIZE;
-    const y    = drops[i];
-
-    const g = ctx.createLinearGradient(0, y-FONT_SIZE, 0, y);
-    g.addColorStop(0, '#ffffff');
-    g.addColorStop(1, '#00ff00');
-    ctx.fillStyle = g;
-    ctx.fillText(char, x, y);
-
-    drops[i] += SPEED * FONT_SIZE;
-
     if (drops[i] > canvas.height && Math.random() > 0.98){
       drops[i] = 0;
     }
